@@ -46,15 +46,74 @@ public class AVLTree {
 		return balanceNode(node);
 	}
 	
+	public void delete(int value) {
+		root = deleteNode(root, value);
+	}
+	
+	public Node deleteNode(Node node, int value) {
+		// if nothing needs to be deleted
+		if(node == null) {
+			return node;
+		}
+		// if value is less than node's data, that means traverse to left
+		if(value < node.data) {
+			node.left = deleteNode(node.left, value);
+		}else if(value > node.data) {		// if value is greater than node's data, that means traverse to right
+			node.right = deleteNode(node.right, value);
+		}else {
+			System.out.println("Node to be deleted with value " + node.data);
+			if(node.left == null && node.right == null) {
+				System.out.println("Leaf deletion scenario");
+				node = null;
+			}			
+			// Deleted node has a single child scenario			
+			// Having a right child
+			else if(node.left == null) {
+				System.out.println("Node to be deleted has right child");
+				node = node.right;
+			}
+			// Having a left child
+			else if (node.right == null) {
+				System.out.println("Node to be deleted has left child");
+				node = node.left;
+			}
+			// Node has two children scenario
+			else {
+				System.out.println("Node to be deleted has two children");
+				// find the in-order successor
+				Node successor = findSuccessor(node.right);
+				node.data = successor.data;
+				node.right = deleteNode(node.right, successor.data);
+			}
+		}
+		// if tree has only single node
+		if(node == null) {
+			return node;
+		}
+		
+		node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
+		return balanceNode(node);
+	}
+	
+	public Node findSuccessor(Node node) {
+		Node current = node;
+		if (current.left == null)
+			return current;
+		else 
+			return findSuccessor(current.left);
+	}
+		
 	// getting the node height
 	public int getHeight(Node node) {
 		return node == null ? 0 : node.height;
 	}
 	
+	//To get the balance factor
 	public int getBalanceFactor(Node node) {
 		return node == null ? 0 : (getHeight(node.left) - getHeight(node.right));
 	}
 	
+
 	public Node balanceNode(Node node) {
 		int balance = getBalanceFactor(node);
 		//LL Scenario
@@ -176,6 +235,15 @@ public class AVLTree {
         frame.setSize(800, 600);
         frame.add(new TreePanel(avlTree));
         frame.setVisible(true);
+        
+        avlTree.delete(1);
+        
+		frame = new JFrame("AVL Tree Visualization");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 600);
+        frame.add(new TreePanel(avlTree));
+        frame.setVisible(true);
+        
 
 	}
 
