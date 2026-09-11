@@ -37,7 +37,6 @@ public class UnweightedGraphAdjList {
 		obj.addEdge("A", "E");
 		obj.addEdge("C", "D");
 		obj.addEdge("D", "E");
-	
 		obj.displayGraph();
 	}
 
