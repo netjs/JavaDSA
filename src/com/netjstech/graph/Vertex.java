@@ -2,6 +2,9 @@ package com.netjstech.graph;
 
 import java.util.Objects;
 
+/**
+ * Class encapsulating a vertex in a graph
+ */
 public class Vertex {
  String label;
 

@@ -1,5 +1,8 @@
 package com.netjstech.graph;
 
+/**
+ * Insert and remove in a graph when adjacency matrix representation is used
+ */
 public class GraphDSAdjMatrix {
 	private int vertices;
 	private int[][] adjMatrix;

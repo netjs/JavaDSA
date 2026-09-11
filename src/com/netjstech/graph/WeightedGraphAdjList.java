@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public class WeightedGraphAdjList {
-	private int vertices;
 	private Map<String, List<Edge>> adjListMap;
 	// Edge class
 	static class Edge{
@@ -26,8 +25,7 @@ public class WeightedGraphAdjList {
 	}
 	
 	//Constructor
-	public WeightedGraphAdjList(int vertices){
-		this.vertices = vertices;
+	public WeightedGraphAdjList(){
 		adjListMap = new HashMap<String, List<Edge>>();
 	}
 	
@@ -47,7 +45,7 @@ public class WeightedGraphAdjList {
 		}
 	}
 	public static void main(String[] args) {
-		WeightedGraphAdjList graph = new WeightedGraphAdjList(5);
+		WeightedGraphAdjList graph = new WeightedGraphAdjList();
 		graph.addEdge("A", "B", 5);
 		graph.addEdge("A", "C", 10);
 		graph.addEdge("A", "E", 7);

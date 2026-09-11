@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Insert and remove in a graph when adjacency list representation is used
+ */
 public class GraphDSAdjList {
 	private Map<Vertex, List<Vertex>> adjListMap = new HashMap<Vertex, List<Vertex>>();
 	
@@ -18,8 +21,7 @@ public class GraphDSAdjList {
 		// remove vertex as a key from the map
 		adjListMap.remove(v);
 		
-		// Remove the deleted vertex from all the lists
-		
+		// Remove the deleted vertex from all the lists		
 		adjListMap.values().forEach(e -> e.remove(v));
 	}
 	
