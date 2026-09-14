@@ -7,6 +7,14 @@ import java.util.Objects;
  */
 public class Vertex {
  String label;
+ boolean visited;
+ public boolean isVisited() {
+	return visited;
+}
+
+ public void setVisited(boolean visited) {
+	this.visited = visited;
+ }
 
  public Vertex(String label) {
 	this.label = label;
